@@ -1,6 +1,6 @@
 # model
 
-  W.I.P minimalistic extensible model component.
+  ES5 minimalistic extensible model component.
 
 ## API
 
@@ -17,120 +17,20 @@ var User = model('User');
 
   Define an attribute `name` with optional `meta` data object.
 
-```js
-var model = require('model');
-
-var Post = model('Post')
-  .attr('id')
-  .attr('title')
-  .attr('body')
-  .attr('created_at')
-  .attr('updated_at')
-```
-
-  With meta data used by plugins:
-
-```js
-var model = require('model');
-
-var Post = model('Post')
-  .attr('id', { required: true, type: 'number' })
-  .attr('title', { required: true, type: 'string' })
-  .attr('body', { required: true, type: 'string' })
-  .attr('created_at', { type: 'date' })
-  .attr('updated_at', { type: 'date' })
-```
-
 ### .validate(fn)
-
-  TODO: validation callback docs
-
-### .use(fn)
-
-  TODO: plugin docs
 
 ### .url([path])
 
   Return base url, or url to `path`.
-
-```js
-User.url()
-// => "/users"
-
-User.url('add')
-// => "/users/add"
-```
 
 ### .route(path)
 
   Set base path for urls.
   Note this is defaulted to `'/' + modelName.toLowerCase() + 's'`
 
-```js
-User.route('/api/u')
-
-User.url()
-// => "/api/u"
-
-User.url('add')
-// => "/api/u/add"
-```
- 
 ### .headers({header: value})
 
   Sets custom headers for static and method requests on the model.
-
-```js  
-User.headers({
-  'X-CSRF-Token': 'some token',
-  'X-API-Token': 'api token' 
-});
-```
-
-### .ATTR()
-
-  "Getter" function generated when `Model.attr(name)` is called.
-
-```js
-var Post = model('Post')
-  .attr('title')
-  .attr('body')
-
-var post = new Post({ title: 'Cats' });
-
-post.title()
-// => "Cats"
-```
-
-### .ATTR(value)
-
-  "Setter" function generated when `Model.attr(name)` is called.
-
-```js
-var Post = model('Post')
-  .attr('title')
-  .attr('body')
-
-var post = new Post;
-
-post.title('Ferrets')
-post.title()
-// => "Ferrets"
-```
-
-  - Emits "change" event with `(name, value, previousValue)`.
-  - Emits "change ATTR" event with `(value, previousValue)`.
-
-```js
-post.on('change', function(name, val, prev){
-  console.log('changed %s from %s to %s', name, prev, val)
-})
-
-post.on('change title', function(val, prev){
-  console.log('changed title')
-})
-
-```
 
 ### .isNew()
 
@@ -139,14 +39,6 @@ post.on('change title', function(val, prev){
 ### .toJSON()
 
   Return a JSON representation of the model (its attributes).
-
-### .has(attr)
-
-  Check if `attr` is non-`null`.
-
-### .get(attr)
-
-  Get `attr`'s value.
 
 ### .set(attrs)
 
@@ -207,10 +99,6 @@ user.save(function(err){
   Destroy and invoke optional `fn(err)`.
 
   Emits "destroy" when successfully deleted.
-
-## Links
-
-  - [Plugins](https://github.com/component/model/wiki/Plugins) for model
 
 ## Testing
 

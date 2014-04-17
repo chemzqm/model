@@ -2,24 +2,24 @@
   "name": "model",
   "repo": "component/model",
   "description": "Elegant data models",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "keywords": [
-    "collection",
     "model",
     "orm",
     "db",
     "database"
   ],
   "dependencies": {
-    "component/each": "0.0.1",
-    "component/emitter": "1.0.1",
-    "component/collection": "*",
-    "visionmedia/superagent": "0.15.1"
+    "component/each": "*",
+    "component/emitter": "*",
+    "visionmedia/superagent": "*"
   },
   "development": {
-    "component/reactive": "0.13.0",
-    "component/assert": "*",
-    "component/domify": "*"
+    "dependencies": {
+      "chemzqm/reactive": "*",
+      "component/assert": "*",
+      "component/domify": "*"
+    }
   },
   "scripts": [
     "lib/index.js",

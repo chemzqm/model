@@ -14,6 +14,9 @@
     <div class="user">
       <h1>{name}</h1>
       <p>{name} is a {age} year old {profession} with {petCount} pets.</p>
+      <ul each="pets">
+        <li>{this}</li>
+      </ul>
     </div>
 
     <script src="../../build/build.js"></script>
@@ -26,27 +29,29 @@
       var User = model('User')
         .attr('name')
         .attr('age')
+        .attr('pets')
         .attr('profession')
 
       User.prototype.petCount = function(){
         return this.pets.length;
       };
 
-      var tj = new User({ name: 'TJ', age: 25, profession: 'Software Engineer' });
-      tj.pets = ['tobi', 'loki', 'jane', 'manny', 'luna', 'abby', 'ewald', 'bandit', 'simon'];
+      var pets = ['tobi', 'loki', 'jane', 'manny', 'luna', 'abby', 'ewald', 'bandit', 'simon'];
+      var tj = new User({ name: 'TJ', age: 25, profession: 'Software Engineer', pets: pets });
       reactive(el, tj);
 
       setTimeout(function(){
-        tj.profession('Zoo Keeper');
+        tj.profession = 'Zoo Keeper';
+        tj.pets = pets.slice(0, 2);
       }, 2000);
 
       setTimeout(function(){
-        tj.name('Tyler');
+        tj.name = 'Tyler';
       }, 3000);
 
       setInterval(function(){
-        tj.age(tj.age() + 1);
-      }, 10);
+        tj.age = tj.age + 1;
+      }, 100);
     </script>
   </body>
 </html>
