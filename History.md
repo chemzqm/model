@@ -1,4 +1,9 @@
 
+0.1.2 / 2014-04-17
+==================
+
+ * change: use Object.defineProperty to define attrs
+
 0.1.2 / 2014-01-20
 ==================
  
