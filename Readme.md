@@ -6,6 +6,11 @@
   this feature can make it works with [reactive](https://github.com/chemzqm/reactive).
 
   Use [https://www.npmjs.com/package/es5-shim] for ie < 9.
+## Install
+
+```
+npm i model-component
+```
 
 ## API
 
