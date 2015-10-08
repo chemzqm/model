@@ -1,26 +1,14 @@
-
-SRC = $(wildcard lib/*.js)
-
-build: components $(SRC)
-	@component build --dev
-
-components: component.json
+build: component.json
 	@component install --dev
 
 watch:
 	@component build --dev -w
 
 clean:
-	rm -fr build components template.js
+	rm -fr build components
 
-node_modules: package.json
-	@npm install
-
-server: node_modules
-	@node test/server
-
-test: build
-	@serve
-	@open http://localhost:3000
+test:
+	@webpack-dev-server --hot --inline --output-filename test.js
+	@open http://localhost:8080/test
 
 .PHONY: clean test watch

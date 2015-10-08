@@ -1,3 +1,10 @@
+1.0.0 / 2015-10-08
+==================
+
+* remove `useragent` dependency and relative request functions
+* remove `component-each` dependency
+* fix test
+* fix examples
 
 0.1.2 / 2014-04-17
 ==================
@@ -6,10 +13,10 @@
 
 0.1.2 / 2014-01-20
 ==================
- 
+•
  * fix: node support
 
-0.1.1 / 2013-09-08 
+0.1.1 / 2013-09-08•
 ==================
 
  * add: request object for configuration

@@ -2,7 +2,7 @@
   "name": "model",
   "repository": "component/model",
   "description": "Elegant data models",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "keywords": [
     "model",
     "orm",
@@ -10,15 +10,11 @@
     "database"
   ],
   "dependencies": {
-    "component/each": "*",
-    "component/emitter": "*",
-    "visionmedia/superagent": "*"
+    "component/emitter": "*"
   },
   "development": {
     "dependencies": {
-      "chemzqm/reactive": "*",
-      "component/assert": "*",
-      "component/domify": "*"
+      "chemzqm/reactive": "1.2.1"
     }
   },
   "scripts": [

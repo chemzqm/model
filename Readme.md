@@ -2,61 +2,33 @@
 
   ES5 minimalistic extensible model component.
 
+  By using `Object.defineProperty`, `change` event is automaticaly emited when value changes.
+  this feature can make it works with [reactive](https://github.com/chemzqm/reactive).
+
+  Use [https://www.npmjs.com/package/es5-shim] for ie < 9.
+
 ## API
 
-### model(name)
+### Model(name)
 
   Create a new model with the given `name`.
 
 ```js
-var model = require('model');
-var User = model('User');
+var Model = require('model');
+var User = Model('User');
 ```
 
-### .attr(name, [meta])
+### Model.attr(name, [meta])
 
   Define an attribute `name` with optional `meta` data object.
 
-### .validate(fn)
+### Model.validate(fn)
 
-### .url([path])
-
-  Return base url, or url to `path`.
-
-### .route(path)
-
-  Set base path for urls.
-  Note this is defaulted to `'/' + modelName.toLowerCase() + 's'`
-
-### .headers({header: value})
-
-  Sets custom headers for static and method requests on the model.
-
-### .isNew()
-
-  Returns `true` if the model is unsaved.
-
-### .toJSON()
-
-  Return a JSON representation of the model (its attributes).
-
-### .set(attrs)
-
-  Set multiple `attrs`.
-
-```js
-user.set({ name: 'Tobi', age: 2 })
-```
-
-### .changed([attr])
-
-  Check if the model is "dirty" and return an object
-  of changed attributes. Optionally check a specific `attr`
-  and return a `Boolean`.
+  Add validate function to Model
 
 ### .error(attr, msg)
 
-  Define error `msg` for `attr`.
+  Add error with `msg` and `attr` to model.
 
 ### .isValid()
 
@@ -69,43 +41,91 @@ user.isValid()
 user.errors
 // => [{ attr: ..., message: ... }]
 ```
+### .primary([val])
 
-### .url([path])
+  Get/Set primary value for model.
 
-  Return this model's base url or relative to `path`:
+### .changed([attr])
 
-```js
-var user = new User({ id: 5 });
-user.url('edit');
-// => "/users/5/edit"
-```
+  Return `false` or an object
 
-### .save(fn)
+  containing the "dirty" attributes.
+  Optionally check for a specific `attr`.
 
-  Save or update and invoke the given callback `fn(err)`.
+### .clean()
 
-```js
-var user = new User({ name: 'Tobi' })
+  remove dirty marks.
 
-user.save(function(err){
+### .set(attrs)
 
+  Set multiple `attrs`.
+
+### .has(attr)
+
+  Check if `attr` is present (not `null` or `undefined`).
+
+## Events
+
+
+* `construct` event emitted on Model when new model created.
+
+``` js
+User.on('construct', function(user, attrs) {
+  api.saveUser(attrs, fucntion(err, data) {
+    if (err){ return; }
+    //no event emit
+    user.primary(data.id);
+  })
 })
 ```
 
-  Emits "save" when complete.
+* `change` event emitted on Model and model instance.
 
-### .destroy([fn])
+``` js
+User.on('change', function(user, name, val, prev) {
+  api.updateUser(name, val, prev, function(err) {
+  })
+})
+```
 
-  Destroy and invoke optional `fn(err)`.
+``` js
+User.on('change name', function(user, val, prev) {
+  api.updateUser(name, val, prev, function(err) {
+  })
+})
+```
 
-  Emits "destroy" when successfully deleted.
+## Add methods to Model/model
+
+``` js
+User.loadUsers = function(cb) {
+  api.loadUsers(function(err, data) {
+    if (err) { return; }
+    var users = data.users.map( attrs => new User(attrs) );
+    cb(null, users);
+  })
+}
+```
+
+``` js
+User.method('destroy', function() {
+  var self = this;
+  api.removeUser(this.primary(), function(err) {
+    if (err) { return; }
+    //remove bindings
+    self.off();
+  })
+})
+```
 
 ## Testing
 
+using webpack-dev-server
+
 ```
+$ npm install webpack webpack-dev-server -g
 $ npm install
-$ make test &
-$ open http://localhost:3000
+$ make test
 ```
 
 # License

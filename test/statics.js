@@ -1,9 +1,5 @@
 
-try {
-  var model = require('model');
-} catch (e) {
-  var model = require('..');
-}
+var model = require('..');
 
 var assert = require('assert');
 
@@ -11,19 +7,6 @@ var User = model('User')
   .attr('id', { type: 'number' })
   .attr('name', { type: 'string' })
   .attr('age', { type: 'number' })
-  .headers({'X-API-TOKEN': 'token string'})
-
-describe('Model.url()', function(){
-  it('should return the base url', function(){
-    assert('/users' == User.url());
-  })
-})
-
-describe('Model.url(string)', function(){
-  it('should join', function(){
-    assert('/users/edit' == User.url('edit'));
-  })
-})
 
 describe('Model.attrs', function(){
   it('should hold the defined attrs', function(){
@@ -32,39 +15,22 @@ describe('Model.attrs', function(){
   })
 })
 
-describe('Model.all(fn)', function(){
-  beforeEach(function(done){
-    User.destroyAll(done);
-  });
+describe('Model.validate', function() {
+  function required(attr) {
+    return function (Model) {
+      Model.validate(function(model) {
+        if (!model.has(attr)) model.error(attr, 'field required');
+      })
+    }
+  }
 
-  beforeEach(function(done){
-    var tobi = new User({ name: 'tobi', age: 2 });
-    var loki = new User({ name: 'loki', age: 1 });
-    var jane = new User({ name: 'jane', age: 8 });
-    tobi.save(function(){
-      loki.save(function(){
-        jane.save(done);
-      });
-    });
+  it('should validate the value', function() {
+    User.use(required('name'));
+    var user = new User({id: 5});
+    assert(user.isValid() === false);
+    var errors = user.errors;
+    assert(errors[0].attr == 'name');
+    assert(errors[0].message == 'field required');
   })
 
-  it('should respond with a collection of all', function(done){
-    User.all(function(err, users, res){
-      assert(!err);
-      assert(res);
-      assert(res.req.header['X-API-TOKEN'] == 'token string')
-      assert(3 == users.length());
-      assert('tobi' == users.at(0).name());
-      assert('loki' == users.at(1).name());
-      assert('jane' == users.at(2).name());
-      done();
-    });
-  })
-})
-
-describe('Model.route(string)', function(){
-  it('should set the base path for url', function(){
-    User.route('/api/u');
-    assert('/api/u/edit' == User.url('edit'));
-  })
 })
