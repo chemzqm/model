@@ -1,4 +1,4 @@
-# model
+# model [![Build Status](https://travis-ci.org/chemzqm/model.svg?branch=master)](https://travis-ci.org/chemzqm/model)
 
   ES5 minimalistic extensible model component.
 
