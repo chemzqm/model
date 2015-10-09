@@ -31,6 +31,20 @@ var User = Model('User');
 
   Add validate function to Model
 
+``` js
+var User = Model('User');
+User.validate(function() {
+   Model.validate(function(model){
+    if (!model.has('name')) model.error('name', 'name required');
+  });
+})
+var u = new User();
+user.isValid()
+//=> false
+user.errors()
+// => [{ attr: 'name' message: 'name required' }]
+```
+
 ### .error(attr, msg)
 
   Add error with `msg` and `attr` to model.
