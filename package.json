@@ -1,13 +1,13 @@
 {
   "name": "model-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "git://github.com/chemzqm/model.git",
   "main": "lib/index.js",
   "dependencies": {
-    "emitter-component": "^1.1.1"
+    "component-emitter": "^1.2.0"
   },
   "browser": {
-    "emitter": "emitter-component"
+    "emitter": "component-emitter"
   },
   "devDependencies": {
     "karma": "^0.13.10",
