@@ -5,7 +5,8 @@
   By using `Object.defineProperty`, `change` event is automaticaly emited when value changes.
   this feature can make it works with [reactive](https://github.com/chemzqm/reactive).
 
-  Use [https://www.npmjs.com/package/es5-shim] for ie < 9.
+  ie < 9 is not supported
+
 ## Install
 
 ```
@@ -26,6 +27,10 @@ var User = Model('User')
 ### Model.attr(name, [meta])
 
   Define an attribute `name` with optional `meta` data object (used by plugins).
+
+### Model.method(name, fn)
+
+  Add function with name to model prototype
 
 ### .changed([attr])
 
@@ -51,23 +56,25 @@ var User = Model('User')
 * `change` event emitted on model instance.
 
 ``` js
-User.on('change name', function(user, val, prev) {
-  api.updateUser(name, val, prev, function(err) {
+user.on('change name', function(val, prev) {
+  api.updateUser({name: val, id: user.id}, function(err) {
   })
 })
 ```
-
-## Add methods to Model/model
+* `change $stat` event emitted on model stat change
 
 ``` js
-User.loadUsers = function(cb) {
-  api.loadUsers(function(err, data) {
-    if (err) { return; }
-    var users = data.users.map( attrs => new User(attrs) )
-    cb(null, users)
-  })
-}
+user.on('change $stat', function(isDirty) {
+  if (isDirty) {
+  // it's dirty
+  } else {
+  // it become clean
+  }
+})
+
 ```
+
+## Add methods to model
 
 ``` js
 User.method('destroy', function() {
