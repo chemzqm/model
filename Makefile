@@ -11,7 +11,7 @@ test-karma:
 	node_modules/.bin/karma start --single-run
 
 test:
-	@webpack-dev-server 'mocha!./test/test_index.js' --hot --inline --output-filename test.js
-	@open http://localhost:8080/test
+	@open http://localhost:8080/bundle
+	@webpack-dev-server 'mocha!./test/test_index.js' --inline --hot --devtool eval
 
 .PHONY: clean test watch
