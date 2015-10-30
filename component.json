@@ -1,6 +1,6 @@
 {
   "name": "model",
-  "repository": "component/model",
+  "repository": "chemzqm/model",
   "description": "Elegant data models",
   "version": "1.0.0",
   "keywords": [
@@ -20,7 +20,8 @@
   "scripts": [
     "lib/index.js",
     "lib/static.js",
-    "lib/proto.js"
+    "lib/proto.js",
+    "lib/util.js"
   ],
   "main": "lib/index.js",
   "license": "MIT"
