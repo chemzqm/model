@@ -1,4 +1,9 @@
-1.1.0 / 2015-12-31
+1.1.1 / 2015-10-31
+==================
+* add more tests and test coverage
+* move code from `static.js` to `index.js`
+
+1.1.0 / 2015-10-31
 ==================
 * remove validate support
 * improve changed support
