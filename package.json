@@ -10,8 +10,12 @@
     "emitter": "component-emitter"
   },
   "devDependencies": {
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "istanbul-instrumenter-loader": "^0.1.3",
     "karma": "^0.13.10",
     "karma-cli": "^0.1.1",
+    "karma-coverage": "^0.5.3",
     "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "^0.2.0",
     "karma-webpack": "^1.7.0",
@@ -22,7 +26,7 @@
     "webpack-dev-server": "^1.12.0"
   },
   "scripts": {
-    "test": "make test-karma"
+    "test": "make test-coveralls"
   },
   "license": "MIT"
 }
