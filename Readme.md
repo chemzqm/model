@@ -5,7 +5,7 @@
 
   ES5 minimalistic extensible model component.
 
-  By using `Object.defineProperty`, `change` event is automaticaly emited when value changes.
+  By using `Object.defineProperty`, `change` event is automaticaly emited on value set.
   this feature can make it works with [reactive](https://github.com/chemzqm/reactive).
 
   ie < 9 is not supported
