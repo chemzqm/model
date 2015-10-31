@@ -1,4 +1,7 @@
-# model [![Build Status](https://travis-ci.org/chemzqm/model.svg?branch=master)](https://travis-ci.org/chemzqm/model)
+# model
+
+[![Build Status](https://travis-ci.org/chemzqm/model.svg?branch=master)](https://travis-ci.org/chemzqm/model)
+[![Coverage Status](https://coveralls.io/repos/chemzqm/model/badge.svg?branch=master&service=github)](https://coveralls.io/github/chemzqm/model?branch=master)
 
   ES5 minimalistic extensible model component.
 

@@ -33,10 +33,22 @@ describe('model(name)', function(){
   })
 })
 
-describe('Model.attrs', function(){
+describe('Model.options', function(){
   it('should hold the defined attrs', function(){
     assert('string' == User.options.name.type)
     assert('number' == User.options.age.type)
+  })
+})
+
+describe('Model.attr', function () {
+  it('should throw if attr is buildin', function () {
+    var err
+    try {
+      Pet.attr('on')
+    } catch (e) {
+      err = e
+    }
+    assert(!!err.message)
   })
 })
 
@@ -67,6 +79,17 @@ describe('Model.method()', function () {
     pig.speak()
     assert.equal(fired, true)
     delete Pet.prototype.speak
+  })
+})
+
+describe('Model.use()',function () {
+  it('should use function', function () {
+    var fired
+    Pet.use(function (clz) {
+      fired = true
+      assert.equal(clz, Pet)
+    })
+    assert.equal(fired, true)
   })
 })
 
@@ -149,6 +172,14 @@ describe('.changed()', function () {
     assert.deepEqual(changed, {name: 'tobi', age: 20})
   })
 
+  it('should get changed property', function () {
+    var user = new User({ name: 'Tobi', age: 2 })
+    user.name = 'tobi'
+    user.age = 20
+    var name = user.changed('name')
+    assert.equal(name, 'tobi')
+  })
+
   it('should return false if not changed', function () {
     var user = new User({ name: 'Tobi', age: 2 })
     assert(user.changed() === false)
@@ -167,6 +198,28 @@ describe('.clean()', function () {
     user.clean()
     var changed = user.changed()
     assert.equal(changed, false)
+  })
+})
+
+describe('change $stat', function () {
+  it('should emit `change $stat`', function () {
+    var user = new User({ name: 'Tobi', age: 2 })
+    var fired
+    user.on('change $stat', function () {
+      fired = true
+    })
+    user.name = 'tobi'
+    assert.equal(fired, true)
+  })
+
+  it('should not emit `change $stat`', function () {
+    var user = new User({ name: 'Tobi', age: 2 })
+    var fired
+    user.on('change $stat', function () {
+      fired = true
+    })
+    user.name = 'Tobi'
+    assert(fired == null)
   })
 })
 
