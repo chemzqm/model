@@ -1,3 +1,6 @@
+1.1.4 / 2015-11-2
+* Polyfill for Object.defineProperty
+
 1.1.1 / 2015-10-31
 ==================
 * add more tests and test coverage
