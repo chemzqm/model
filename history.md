@@ -1,4 +1,5 @@
-1.1.4 / 2015-11-2
+1.1.5 / 2015-11-2
+* fix fatal error
 * Polyfill for Object.defineProperty
 
 1.1.1 / 2015-10-31

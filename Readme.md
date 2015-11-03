@@ -2,14 +2,14 @@
 
 [![Build Status](https://travis-ci.org/chemzqm/model.svg?branch=master)](https://travis-ci.org/chemzqm/model)
 [![Coverage Status](https://coveralls.io/repos/chemzqm/model/badge.svg?branch=master&service=github)](https://coveralls.io/github/chemzqm/model?branch=master)
-[![Dependency Status](https://david-dm.org/chemzqm/model)](https://david-dm.org/chemzqm/model)
+[![Dependency Status](https://david-dm.org/chemzqm/model.svg)](https://david-dm.org/chemzqm/model)
 
   ES5 minimalistic extensible model component.
 
   By using `Object.defineProperty`, `change` event is automaticaly emited on value set.
   this feature can make it works with [reactive](https://github.com/chemzqm/reactive).
 
-  ie < 9 is not supported
+  You may need [polyfill code](https://gist.github.com/chemzqm/22c1cec5895afd924bee) for ie < 9
 
 ## Install
 
