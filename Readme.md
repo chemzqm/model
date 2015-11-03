@@ -21,7 +21,7 @@ npm i model-component
 
 ### Model(name)
 
-  Create a new model with the given `name`.
+  Factory method, Create a new model with the given `name`.
 
 ```js
 var Model = require('model')
@@ -54,6 +54,10 @@ var User = Model('User')
 ### .has(attr)
 
   Check if `attr` is present (not `null` or `undefined`).
+
+### .use(plugin)
+
+  Plugin is called with Model class
 
 ## Events
 
