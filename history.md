@@ -1,3 +1,6 @@
+1.2.0 / 2015-11-30
+* use cloned attribute to avoid conflict
+
 1.1.5 / 2015-11-2
 * fix fatal error
 * Polyfill for Object.defineProperty

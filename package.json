@@ -1,6 +1,6 @@
 {
   "name": "model-component",
-  "version": "1.1.6",
+  "version": "1.2.6",
   "repository": "git://github.com/chemzqm/model.git",
   "description": "minimal event model, emit change on set value",
   "main": "lib/index.js",
