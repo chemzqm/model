@@ -1,8 +1,9 @@
 # model
 
-[![Build Status](https://travis-ci.org/chemzqm/model.svg?branch=master)](https://travis-ci.org/chemzqm/model)
-[![Coverage Status](https://coveralls.io/repos/chemzqm/model/badge.svg?branch=master&service=github)](https://coveralls.io/github/chemzqm/model?branch=master)
-[![Dependency Status](https://david-dm.org/chemzqm/model.svg)](https://david-dm.org/chemzqm/model)
+[![NPM version](https://img.shields.io/npm/v/model-component.svg?style=flat-square)](https://www.npmjs.com/package/model-component)
+[![Dependency Status](https://img.shields.io/david/chemzqm/model.svg?style=flat-square)](https://david-dm.org/chemzqm/model)
+[![Build Status](https://img.shields.io/travis/chemzqm/model/master.svg?style=flat-square)](http://travis-ci.org/chemzqm/model)
+[![Coverage Status](https://img.shields.io/coveralls/chemzqm/model/master.svg?style=flat-square)](https://coveralls.io/github/chemzqm/model?branch=master)
 
   ES5 minimalistic extensible model component.
 
